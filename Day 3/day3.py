@@ -53,7 +53,7 @@ def PartTwo(text):
     while len(oxy) > 1: # There's definitely a way to get both from one while...
         print(len(oxy))
         print(oxy)
-        for x in oxy:
+        for x in oxy:  # Sadness :( Why aint work?
             print(gamma + " Gamma")
             print(x)
             print(gamma[pos] + " Gamma pos")
