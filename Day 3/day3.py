@@ -48,15 +48,29 @@ def PartTwo(text):
              carbon.append(x)  # Make list of unpopular numbers
     print(len(oxy))
     print(len(carbon))
+
     pos = 1
     while len(oxy) > 1: # There's definitely a way to get both from one while...
+        print(len(oxy))
+        print(oxy)
         for x in oxy:
+            print(gamma + " Gamma")
             print(x)
+            print(gamma[pos] + " Gamma pos")
+            print(str(x[pos]))
             if x[pos] != gamma[pos]:
                 oxy.remove(x)
-    print(len(oxy))
-    pos += 1
+                print("NOPE!")
+            else:
+                print("YUP!")
+            if len(oxy) == 1:
+                break
+
+            print("")
+        pos += 1
+        print("Position :" + str(pos))
     print("Final oxy is: " + str(oxy))
+
     while len(carbon) > 1:
         for x in carbon:
             if x[pos] != epsil[pos]:
