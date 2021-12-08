@@ -50,23 +50,25 @@ def PartTwo(text):
     print(len(carbon))
 
     pos = 1
+    # oxy.insert(0, "123496789AB")
+    # gamma = "123456789AB"
     while len(oxy) > 1: # There's definitely a way to get both from one while...
+        print("pos: " + str(pos))
         print(len(oxy))
-        print(oxy)
+
+        # print(oxy)
         for x in oxy:  # Sadness :( Why aint work?
             print(gamma + " Gamma")
             print(x)
-            print(gamma[pos] + " Gamma pos")
+            print(gamma[pos] + " Gamma pos "+ str(pos))
             print(str(x[pos]))
             if x[pos] != gamma[pos]:
-                oxy.remove(x)
-                print("NOPE!")
+                while x in oxy:
+                     oxy.remove(x)
+                     print("NOPE!")
             else:
-                print("YUP!")
-            if len(oxy) == 1:
-                break
-
-            print("")
+                 print("YUP!")
+            print(len(oxy))
         pos += 1
         print("Position :" + str(pos))
     print("Final oxy is: " + str(oxy))
