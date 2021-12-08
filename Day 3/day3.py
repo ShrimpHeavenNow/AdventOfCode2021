@@ -9,8 +9,6 @@ def PartOne(text):  # There's a way to do this without the dict. There's also a 
     for x in text:
         for y in range(len(x)):
             if x[y] == "1":
-                if y not in counts.keys():
-                    counts[y] = 0
                 counts[y] += 1
     for x in counts.values():
         if x > len(text) / 2:
