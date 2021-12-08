@@ -1,6 +1,5 @@
 with open('report.txt') as f:
     bits = [line.rstrip() for line in f]
-print(len(bits))
 
 
 def PartOne(text):
@@ -21,7 +20,21 @@ def PartOne(text):
     return int(gamma, 2) * int(epsil, 2)
 
 
-def PartTwo(text):
+def Compare(thelist, compare):
+    pos = 1
+    remove = []
+    while len(thelist) > 1:
+        for x in remove:
+            thelist.remove(x)
+        remove = []
+        for x in thelist:
+            if x[pos] != compare[pos]:
+                remove.append(x)
+        pos += 1
+    return thelist
+
+
+def PartTwo(text):  # There's a way to just use the part one function.
     counts = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0}
     gamma = ""
     epsil = ""
@@ -49,38 +62,8 @@ def PartTwo(text):
     print(len(oxy))
     print(len(carbon))
 
-    pos = 1
-    # oxy.insert(0, "123496789AB")
-    # gamma = "123456789AB"
-    while len(oxy) > 1:  # There's definitely a way to get both from one while...
-        print("pos: " + str(pos))
-        print(len(oxy))
-
-        # print(oxy)
-        for x in oxy:  # Sadness :( Why aint work?
-            print(gamma + " Gamma")
-            print(x)
-            print(gamma[pos] + " Gamma pos " + str(pos))
-            print(str(x[pos]))
-            if x[pos] != gamma[pos]:
-                while x in oxy:
-                    oxy.remove(x)
-                    print("NOPE!")
-            else:
-                print("YUP!")
-            print(len(oxy))
-        pos += 1
-        print("Position :" + str(pos))
-    print("Final oxy is: " + str(oxy))
-
-    while len(carbon) > 1:
-        for x in carbon:
-            if x[pos] != epsil[pos]:
-                carbon.remove(x)
-                print(x)
-                print("NOPE!")
-
-    print("Final carbon is: " + str(carbon))
+    print("Final oxy is: " + str(Compare(oxy, gamma)))
+    print("Final carbon is: " + str(Compare(carbon, epsil)))
     return int(oxy[0], 2) * int(carbon[0], 2)
 
 
