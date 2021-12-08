@@ -1,17 +1,16 @@
 with open('report.txt') as f:
     bits = [line.rstrip() for line in f]
 
-fart = bits
-butts = bits
 
-
-def PartOne(text):
+def PartOne(text):  # There's a way to do this without the dict. There's also a way to auto generate this dict.
     counts = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0}
     gamma = ""
     epsil = ""
     for x in text:
         for y in range(len(x)):
             if x[y] == "1":
+                if y not in counts.keys():
+                    counts[y] = 0
                 counts[y] += 1
     for x in counts.values():
         if x > len(text) / 2:
@@ -23,98 +22,56 @@ def PartOne(text):
     return int(gamma, 2) * int(epsil, 2)
 
 
-def Compare(thelist, compare):
+def PartTwo(Oxygen):  # this can be wildly optimized.
     pos = 0
-    remove = []
-    while len(thelist) > 1:
-        for x in remove:
-            thelist.remove(x)
+    while len(Oxygen) > 1:
+        counts = 0
         remove = []
-        for x in thelist:
-            if x[pos] != compare[pos]:
+        compare = "0"  # There's a smart way to not need this, I'm sure of it.
+        for x in Oxygen:
+            if x[pos] == "1":  # find the most popular bit in a position with a tie, decide on 1.
+                counts += 1
+        if counts > len(Oxygen) / 2 or counts == len(Oxygen) / 2:
+            compare = "1"
+        for x in Oxygen:
+            if x[pos] != compare:  # compare that bit to the list in that position
+                remove.append(x)  # remove items that don't match
+        for x in remove:
+            Oxygen.remove(x)
+        pos += 1  # Advance position
+
+    return Oxygen[0]
+
+
+def PartTwoTwo(carbon):  # There's gotta be a way to make this one function with PartTwo
+    pos = 0
+
+    while len(carbon) > 1:
+        counts = 0
+        remove = []
+        compare = "0"
+        for x in carbon:
+            if x[pos] == "1":
+                counts += 1
+        if counts > len(carbon) / 2 or counts == len(carbon) / 2:
+            compare = "1"
+        for x in carbon:
+            if x[pos] == compare:  # This is the only change from PartTwo (Can operators be arguments?)
                 remove.append(x)
+        for x in remove:
+            carbon.remove(x)
         pos += 1
-    return thelist
 
-
-def PartTwo(list):  # this can be wildly optimized.
-    pos = 0
-
-    while len(list) > 1:
-        counts = 0
-        remove = []
-        compare = "0"
-        for x in list:
-            if x[pos] == "1":  # find the most popular bit in a position with a tie, decide on 1.
-                counts += 1
-        if counts > len(list) / 2 or counts == len(list) / 2:
-            compare = "1"
-        print("In Position " + str(pos) + " the more common bit is " + compare)
-        print(len(list))
-        for x in list:
-            if x[pos] != compare:  # compare that bit to the list in that position
-                remove.append(x)  # remove items that don't match
-        for x in remove:
-            list.remove(x)
-        pos += 1  # Advance position
-
-    print(list)
-
-
-def PartTwo(list):  # this can be wildly optimized.
-    pos = 0
-
-    while len(list) > 1:
-        counts = 0
-        remove = []
-        compare = "0"
-        for x in list:
-            if x[pos] == "1":  # find the most popular bit in a position with a tie, decide on 1.
-                counts += 1
-        if counts > len(list) / 2 or counts == len(list) / 2:
-            compare = "1"
-        # print("In Position "  + str(pos) + " the more common bit is " + compare)
-        # print(len(list))
-        for x in list:
-            if x[pos] != compare:  # compare that bit to the list in that position
-                remove.append(x)  # remove items that don't match
-        for x in remove:
-            list.remove(x)
-        pos += 1  # Advance position
-
-    return list[0]
-
-
-def PartTwoTwo(list):  # There's gotta be a way to make this one function with PartTwo
-    pos = 0
-
-    while len(list) > 1:
-        counts = 0
-        remove = []
-        compare = "0"
-        for x in list:
-            if x[pos] == "1":  # find the most popular bit in a position with a tie, decide on 1.
-                counts += 1
-        if counts > len(list) / 2 or counts == len(list) / 2:
-            compare = "1"
-        # print("In Position "  + str(pos) + " the more DICKS common bit is " + compare)
-        # print(len(list))
-        for x in list:
-            if x[pos] == compare:  # compare that bit to the list in that position
-                remove.append(x)  # remove items that don't match
-        for x in remove:
-            list.remove(x)
-        pos += 1  # Advance position
-
-    return list[0]
+    return carbon[0]
 
 
 print("Power consumption: " + str(PartOne(bits)))
 
 one = PartTwo(bits)
 
-with open('report.txt') as f:  # There's probably some copy/ deepcopy fix for this..
+with open('report.txt') as f:  # There's probably some copy/ deepcopy fix for this.
     bits = [line.rstrip() for line in f]
+
 two = PartTwoTwo(bits)
 
-print(int(one, 2) * int(two, 2))
+print("Life Support Rating: " + str(int(one, 2) * int(two, 2)))
