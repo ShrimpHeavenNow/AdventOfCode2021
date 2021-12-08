@@ -42,17 +42,17 @@ def PartTwo(text):
     print(epsil)  # Use this for CO2
 
     for x in text:
-         if x[0] == gamma[0]:
-             oxy.append(x)  # Make list of popular numbers
-         else:
-             carbon.append(x)  # Make list of unpopular numbers
+        if x[0] == gamma[0]:
+            oxy.append(x)  # Make list of popular numbers
+        else:
+            carbon.append(x)  # Make list of unpopular numbers
     print(len(oxy))
     print(len(carbon))
 
     pos = 1
     # oxy.insert(0, "123496789AB")
     # gamma = "123456789AB"
-    while len(oxy) > 1: # There's definitely a way to get both from one while...
+    while len(oxy) > 1:  # There's definitely a way to get both from one while...
         print("pos: " + str(pos))
         print(len(oxy))
 
@@ -60,14 +60,14 @@ def PartTwo(text):
         for x in oxy:  # Sadness :( Why aint work?
             print(gamma + " Gamma")
             print(x)
-            print(gamma[pos] + " Gamma pos "+ str(pos))
+            print(gamma[pos] + " Gamma pos " + str(pos))
             print(str(x[pos]))
             if x[pos] != gamma[pos]:
                 while x in oxy:
-                     oxy.remove(x)
-                     print("NOPE!")
+                    oxy.remove(x)
+                    print("NOPE!")
             else:
-                 print("YUP!")
+                print("YUP!")
             print(len(oxy))
         pos += 1
         print("Position :" + str(pos))
@@ -79,8 +79,10 @@ def PartTwo(text):
                 carbon.remove(x)
                 print(x)
                 print("NOPE!")
+
     print("Final carbon is: " + str(carbon))
+    return int(oxy[0], 2) * int(carbon[0], 2)
+
 
 print("Power consumption: " + str(PartOne(bits)))
-
-PartTwo(bits)
+print("Life Support Rating: " + str(PartTwo(bits)))
