@@ -3,7 +3,7 @@ crabs = [int(x) for x in open('crabs.txt').read().strip().split(',')]
 
 def PartOne(crabs):
     counts = {}
-    for x in range(max(crabs)):
+    for x in range(min(crabs), max(crabs)):
         count = 0
         for y in crabs:
             count += abs(x - y)
@@ -14,7 +14,7 @@ def PartOne(crabs):
 
 def PartTwo(crabs):  # This is wildly inefficient, but hey: it works.
     counts = {}
-    for x in range(max(crabs)):
+    for x in range(min(crabs), max(crabs)):
         count = 0
         for y in crabs:
             for z in range(abs(x - y)):
@@ -24,10 +24,21 @@ def PartTwo(crabs):  # This is wildly inefficient, but hey: it works.
     print(min(counts.values()))
 
 
+def Fuel(z):
+    z = z * (z + 1) // 2
+    return z
+
+
 def PartTwoSmart(crabs):
+    costs = []
     for x in crabs:
-        x ^ 2 + x / 2  # Let's do some mean and median action tomorrow, wh?
+        cost = 0
+        for y in crabs:
+            cost += Fuel(abs(x - y))
+        costs.append(cost)
+    print(min(costs))
 
 
 PartOne(crabs)
 # PartTwo(crabs)
+PartTwoSmart(crabs)
