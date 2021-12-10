@@ -1,11 +1,4 @@
-import math
-
-with open('crabs.txt') as f:
-    crabs = [line.strip().split(',') for line in f]
-
-crabs = crabs[0]  # See, I really need to learn how to parse more efficiently.
-for i in range(0, len(crabs)):
-    crabs[i] = int(crabs[i])
+crabs = [int(x) for x in open('crabs.txt').read().strip().split(',')]
 
 
 def PartOne(crabs):
@@ -31,5 +24,10 @@ def PartTwo(crabs):  # This is wildly inefficient, but hey: it works.
     print(min(counts.values()))
 
 
+def PartTwoSmart(crabs):
+    for x in crabs:
+        x ^ 2 + x / 2  # Let's do some mean and median action tomorrow, wh?
+
+
 PartOne(crabs)
-PartTwo(crabs)
+# PartTwo(crabs)
