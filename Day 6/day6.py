@@ -23,6 +23,15 @@ class lanterns:  # I could have created the columns here instead of doing it wit
         return spawnList
 
 
+def PartTwo(fishies, days):
+    fish = [fishies.count(i) for i in range(9)]
+    for i in range(days):
+        num = fish.pop(0)
+        fish[6] += num
+        fish.append(num)
+        assert len(fish) == 9
+    print(sum(fish))
+
 
 def PartOne(spawns, days):
     lanternFish = []
@@ -41,9 +50,8 @@ def PartOne(spawns, days):
     print(len(lanternFish))
 
 
-
-
-
 fish = Parse(fish)
 
-PartOne(fish, 256)
+PartOne(fish, 80)  # Fun fact, not scalable.
+
+PartTwo(fish, 256)
