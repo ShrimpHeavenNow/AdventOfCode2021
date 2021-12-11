@@ -31,6 +31,8 @@ def PartOne(floor):
         ypos += 1
     print(sum(lowpoints))  # Having a list and summing was better for debugging. Why am I justifying myself?
 
+def FindNines(floor,xpos,ypos,areacoords):
+    if floor[ypos-1][xpos-1]
 
 def PartTwo(floor):
     """
@@ -38,7 +40,10 @@ def PartTwo(floor):
     find the amount of numbers in that area
     add that to a list to later multiply.
 
-    TO find an area surrounded by nines, we iterate through a list and see if it has a 9 next to it.
+    TO find an area surrounded by nines, we iterate through a list and see if it has a 9 next to it then see if its
+    adjacents also have 9s.
+
+    recursion?
     """
 
 
